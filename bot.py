@@ -4,8 +4,7 @@ from discord.ext import commands
 class RoboNone(commands.Bot):
     def __init__(self):
         super().__init__(
-            command_prefix=['?',"？"],
-            description='A bot that greets the user back.',
+            command_prefix=["?", "？"], description="A bot that greets the user back."
         )
         self.load_cogs()
 
@@ -13,14 +12,15 @@ class RoboNone(commands.Bot):
         # ./cogs/*.py をすべてロード/アンロードする
         module_names = []
         from pathlib import Path
-        for p in Path('./cogs').glob('*.py'):
+
+        for p in Path("./cogs").glob("*.py"):
             if unload:
-                self.unload_extension(f'cogs.{p.stem}')
+                self.unload_extension(f"cogs.{p.stem}")
             else:
-                self.load_extension(f'cogs.{p.stem}')
+                self.load_extension(f"cogs.{p.stem}")
             module_names.append(p.stem)
         return module_names
 
     async def on_member_join(self, member):
-        greeting_channel = self.get_channel(535622641520738314)
+        greeting_channel = self.get_channel(534_434_403_988_930_563)
         await greeting_channel.send(f"{member.mention}さん、おはよう")
